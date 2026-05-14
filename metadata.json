@@ -1,0 +1,6 @@
+{
+  "name": "Neural Cortex",
+  "description": "Hyper-local AI-powered discovery engine that turns dead time into memorable experiences. Discover real-time events, verified activities, and personalized itineraries within 20 minutes of your location.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}

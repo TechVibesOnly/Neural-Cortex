@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "App user profile.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "isAdmin": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "email"]
+    },
+    "UserPreference": {
+      "title": "User Preference",
+      "description": "User personalization data.",
+      "type": "object",
+      "properties": {
+        "categories": { "type": "array", "items": { "type": "string" } },
+        "priceRange": { "type": "array", "items": { "type": "number" } },
+        "vibes": { "type": "array", "items": { "type": "string" } },
+        "notificationsEnabled": { "type": "boolean" }
+      }
+    },
+    "Event": {
+      "title": "Event",
+      "description": "Verified discovery event.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "startTime": { "type": "string", "format": "date-time" },
+        "endTime": { "type": "string", "format": "date-time" },
+        "venue": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "city": { "type": "string" },
+        "neighborhood": { "type": "string" },
+        "verificationScore": { "type": "number" },
+        "sourceCount": { "type": "integer" },
+        "priceRange": { "type": "string" },
+        "bookingUrl": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "confidence": { "type": "string", "enum": ["verified", "likely", "unconfirmed", "stale"] },
+        "isSponsored": { "type": "boolean" }
+      },
+      "required": ["title", "startTime", "venue", "latitude", "longitude"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User accounts"
+    },
+    "/users/{userId}/preferences/main": {
+      "schema": "UserPreference",
+      "description": "User specific settings"
+    },
+    "/events/{eventId}": {
+      "schema": "Event",
+      "description": "Global event registry"
+    },
+    "/itineraries/{itineraryId}": {
+      "schema": "Itinerary",
+      "description": "User generated itineraries"
+    }
+  }
+}
